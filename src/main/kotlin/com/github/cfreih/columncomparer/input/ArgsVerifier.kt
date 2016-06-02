@@ -5,8 +5,13 @@ import java.io.File
 
 class ArgsVerifier(val arguments: Array<String>) {
 
-	val errorMessages: MutableList<String> = mutableListOf()
+	internal val errorMessages: MutableList<String> = mutableListOf()
 		get() = field
+    private val argumentSetSize = 3
+    private val minArguments : Int
+        get() = argumentSetSize * 2
+    private val fileSetIndex = 0
+    private val columnSetIndex = 2
 
 	fun verify() {
 		verifyNumberOfArguments()
@@ -18,10 +23,10 @@ class ArgsVerifier(val arguments: Array<String>) {
 	}
 
 	internal fun verifyNumberOfArguments() {
-		if(arguments.size < 6) {
+		if(arguments.size < minArguments) {
 			errorMessages.add("You have ${arguments.size} arguments, but need at least six")
 		}
-		if(arguments.size % 3 != 0) {
+		if(arguments.size % argumentSetSize != 0) {
 			errorMessages.add("Arguments should be grouped in sets of three like \"fileName delimiter columnNumber\"")
 		}
 	}
@@ -30,8 +35,8 @@ class ArgsVerifier(val arguments: Array<String>) {
 		var index = 0
 		while(index < arguments.size) {
 			when {
-				index % 3 == 0 -> verifyArgumentIsFile(index)
-				index % 3 == 2 -> verifyArgumentIsInteger(index)
+				index % argumentSetSize == fileSetIndex -> verifyArgumentIsFile(index)
+				index % argumentSetSize == columnSetIndex -> verifyArgumentIsInteger(index)
 			}
 			index++
 		}

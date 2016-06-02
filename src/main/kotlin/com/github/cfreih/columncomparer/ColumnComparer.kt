@@ -1,8 +1,10 @@
 package com.github.cfreih.columncomparer
 
+import com.github.cfreih.columncomparer.input.ArgsVerifier
+
 
 fun main(args: Array<String>) {
-	com.github.cfreih.columncomparer.input.parseArgs(args)
+	ArgsVerifier(args).verify()
 	//setup columns to compare
 	//compare columns
 	//print results

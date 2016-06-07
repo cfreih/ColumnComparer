@@ -1,6 +1,5 @@
-package com.github.cfreih.columncomparer.com.github.cfreih.columncomparer.input
+package com.github.cfreih.columncomparer.input
 
-import com.github.cfreih.columncomparer.input.ArgsVerifier
 import org.junit.After
 import org.junit.Before
 import org.junit.Test

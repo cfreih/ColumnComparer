@@ -1,4 +1,4 @@
-package com.github.cfreih.columncomparer.input
+package com.github.cfreih.columncomparer.verification
 
 import org.junit.After
 import org.junit.Before

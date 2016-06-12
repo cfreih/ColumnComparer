@@ -1,6 +1,6 @@
 package com.github.cfreih.columncomparer
 
-import com.github.cfreih.columncomparer.input.ArgsVerifier
+import com.github.cfreih.columncomparer.verification.ArgsVerifier
 
 
 fun main(args: Array<String>) {

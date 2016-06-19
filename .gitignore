@@ -214,3 +214,20 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+.idea/compiler.xml
+.idea/copyright/
+.idea/dictionaries/
+.idea/gradle.xml
+.idea/libraries/
+.idea/misc.xml
+.idea/modules.xml
+.idea/modules/ColumnComparer.iml
+.idea/modules/ColumnComparer_main.iml
+.idea/modules/ColumnComparer_test.iml
+.idea/uiDesigner.xml
+.idea/vcs.xml
+.idea/workspace.xml
+ColumnComparer.iml
+ColumnComparer.ipr
+ColumnComparer.iws
+testCol1,testCol2,testCol3

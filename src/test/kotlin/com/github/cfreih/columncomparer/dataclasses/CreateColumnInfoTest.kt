@@ -1,6 +1,7 @@
 package com.github.cfreih.columncomparer.dataclasses
 
 import com.github.cfreih.columncomparer.exceptions.FileReadException
+import com.github.cfreih.columncomparer.services.populateFile
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -29,7 +30,7 @@ class CreateColumnInfoTest {
         val args = ArguementSet(fileName, delimiter, columnNumber)
 
         //execute
-        val result : ColumnInfo = createColumnInfo(args)
+        val result : ColumnInfo = ColumnInfo.create(args)
 
         //assert
         assertEquals(fileName, result.fileName)
@@ -40,11 +41,11 @@ class CreateColumnInfoTest {
     fun fileInCorrectFormatShouldReturnPopulatedColumnInfo() {
         //setup
         val args = ArguementSet(fileName, delimiter, columnNumber)
-        populateFile("testCol1,testCol2,testCol3,testCol4", "2testCol1,2testCol2,2testCol3,",
+        populateFile(fileName, "testCol1,testCol2,testCol3,testCol4", "2testCol1,2testCol2,2testCol3,",
                 "3TestCol1,,3testCol3,3testCol4")
 
         //execute
-        val result : ColumnInfo = createColumnInfo(args)
+        val result : ColumnInfo = ColumnInfo.create(args)
 
         //assert
         assertEquals(fileName, result.fileName)
@@ -54,30 +55,24 @@ class CreateColumnInfoTest {
         assertEquals(true, result.columnValues.contains("3testCol4"))
     }
 
-    private fun populateFile(vararg lines : String) {
-        File(fileName).printWriter().use { out ->
-            lines.forEach { out.println(it) }
-        }
-    }
-
     @Test(expected = FileReadException::class)
     fun tooFewColumnsShouldThrowException() {
         //setup
         val args = ArguementSet(fileName, delimiter, columnNumber)
-        populateFile("testCol1,testCol2,testCol3")
+        populateFile(fileName, "testCol1,testCol2,testCol3")
 
         //execute
-        createColumnInfo(args)
+        ColumnInfo.create(args)
     }
 
     @Test(expected = FileReadException::class)
     fun wrongDelimiterShouldThrowException() {
         //setup
         val args = ArguementSet(fileName, delimiter, columnNumber)
-        populateFile("testCol1|testCol2|testCol3|testCol4", "2testCol1|2testCol2|2testCol3|",
+        populateFile(fileName, "testCol1|testCol2|testCol3|testCol4", "2testCol1|2testCol2|2testCol3|",
                 "3TestCol1||3testCol3|3testCol4")
 
         //execute
-        createColumnInfo(args)
+        ColumnInfo.create(args)
     }
 }

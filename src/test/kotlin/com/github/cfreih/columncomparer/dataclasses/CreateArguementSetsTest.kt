@@ -15,7 +15,7 @@ class CreateArguementSetsTest {
         args = arrayOf()
 
         //execute
-        val result : List<ArguementSet> = createArguementSets(args)
+        val result : List<ArguementSet> = ArguementSet.create(args)
 
         //assert
         assertEquals(0, result.size)
@@ -27,7 +27,7 @@ class CreateArguementSetsTest {
         args = arrayOf("test.txt", ",", "3", "test.csv", "/", "1003")
 
         //execute
-        val result : List<ArguementSet> = createArguementSets(args)
+        val result : List<ArguementSet> = ArguementSet.create(args)
 
         //assert
         assertEquals(2, result.size)
@@ -41,7 +41,7 @@ class CreateArguementSetsTest {
         args = arrayOf("singleArg")
 
         //execute
-        createArguementSets(args)
+        ArguementSet.create(args)
     }
 
     @Test(expected = NumberFormatException::class)
@@ -50,6 +50,6 @@ class CreateArguementSetsTest {
         args = arrayOf("test.txt", "|", "4.5")
 
         //execute
-        createArguementSets(args)
+        ArguementSet.create(args)
     }
 }
